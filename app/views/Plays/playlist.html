@@ -1,0 +1,32 @@
+<html>
+<head>
+     <!-- <link rel="stylesheet" type="text/css" href="static/css/walls.css"> -->
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <a href="/home">Dashboard</a> <a href="/logout">Logout</a>
+        <h1> {{user['first_name']}} {{user['last_name']}}'s Playlist</h1>
+      <table class="table">
+            <tr>
+                <th>Artist</th>
+                <th>Title</th>
+                <th>Times Added</th>
+            </tr>
+            {% for songs in playlist %}
+            <tr>
+                <td>{{songs['name']}}</td>
+                <td>{{songs['title']}}</td>
+                <td>{{songs['count']}}</td>
+    
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<html>
+<head>
+     <!-- <link rel="stylesheet" type="text/css" href="static/css/walls.css"> -->
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <h1>Hello, {{session['first_name']}}!</h1>
+        <h3>All the songs in our hub</h3>
+        <a href="/playlist/{{session['id']}}">My Playlist</a> <a href="/logout">Logout</a>
+        <table class="table">
+            <tr>
+                <th>Artist</th>
+                <th>Title</th>
+                <th># of Times Song Has Been Added</th>
+                <th>Add to Playlist</th>
+            </tr>
+            {% for info in hub_info %}
+            <tr>
+                <td>{{info['name']}}</td>
+                <td><a href="/song/{{info['id']}}">{{info['title']}}</a></td>
+                <td>{{info['count']}}</td>
+                <td><form action="/add_playlist" method="post">
+                    <input type="hidden" name = 'song_id' value="{{info['id']}}">
+                    <input type="submit" value="Add">
+                </form></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <label for="add_song">Add a Song:</label>
+        <form action='/add_song' method='post'>
+            <label for="title">Title:</label>
+            <input type="text" name="title">
+            <label for="artist">Artist:</label>
+            <input type="text" name="artist">
+            <input type="submit" value="Add Song">
+        </form>
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                 <p>{{message}}</p>
+                {% endfor %}
+             {% endif %}
+        {% endwith %}
+    </body>
+</html>

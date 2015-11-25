@@ -1,0 +1,29 @@
+<html>
+<head>
+     <!-- <link rel="stylesheet" type="text/css" href="static/css/walls.css"> -->
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <a href="/home">Dashboard</a> <a href="/logout">Logout</a>
+        <h2> Others who added {{song_info['name']}} - {{song_info['title']}}</h2>
+       <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Times Added</th>
+            </tr>
+            {% for songs in others_added %}
+            <tr>
+                <td><a href="/playlist/{{songs['user_id']}}">{{songs['name']}}</a></td>
+                <td>{{songs['count']}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
